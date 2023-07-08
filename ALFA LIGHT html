@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webhook Test Page</title>
+    <script>
+        function handleWebhook(event) {
+            event.preventDefault();
+            var payload = JSON.parse(event.target.value);
+            var message = payload.message;
+            var chatId = message.chat.id;
+            var text = message.text;
+            
+            // Tampilkan pesan di halaman web
+            var messageContainer = document.getElementById("messageContainer");
+            var newMessage = document.createElement("p");
+            newMessage.innerText = "Chat ID: " + chatId + " - Pesan: " + text;
+            messageContainer.appendChild(newMessage);
+        }
+    </script>
+</head>
+<body>
+    <h1>Webhook Test Page</h1>
+    <div id="messageContainer"></div>
+    <form>
+        <textarea rows="5" cols="50" oninput="handleWebhook(event)" placeholder="Hasil Webhook akan ditampilkan di sini..."></textarea>
+    </form>
+</body>
+</html>
